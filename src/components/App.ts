@@ -1,9 +1,9 @@
-import { View } from '../model/View';
+import { View } from '../views/View';
 import { Header } from './Header';
 import { ListContainer } from './Container';
 
 export class App extends View {
-  regionsMap(): { [key: string]: string } {
+  regionsMap(): { [key: string]: string; } {
     return {
       header: '.header-wrapper',
       container: '.container-wrapper',

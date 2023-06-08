@@ -1,4 +1,4 @@
-import { View } from '../model/View';
+import { View } from '../views/View';
 
 export class Header extends View {
   template(): string {

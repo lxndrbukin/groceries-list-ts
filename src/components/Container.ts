@@ -1,6 +1,6 @@
-import { View } from '../model/View';
+import { View } from '../views/View';
 import { ItemProps } from './types';
-import { ListItem } from './ListItem';
+import { List } from './List';
 
 
 export class ListContainer extends View {
@@ -10,13 +10,8 @@ export class ListContainer extends View {
   regionsMap(): { [key: string]: string; } {
     return {
       list: '.list',
+      item: '.list-item'
     };
-  }
-
-  renderList(): void {
-    this.itemList.map((item: ItemProps) => {
-      new ListItem(this.regions.list, item).render();
-    });
   }
 
   eventsMap(): { [key: string]: (e?: any) => void; } {
@@ -31,15 +26,13 @@ export class ListContainer extends View {
           id: this.itemList.length,
           data: (<HTMLFormElement>e.target).listItem.value
         };
-        this.itemList.push(this.listItem);
-        (<HTMLFormElement>e.target).listItem.value = '';
-        this.render();
-      },
-      'input:.form-input': (e: InputEvent) => {
-        if (!e.target) {
+        if (this.listItem.data === '' || !this.listItem.data) {
           return;
         }
-      }
+        this.itemList.push(this.listItem);
+        (<HTMLFormElement>e.target).listItem.value = '';
+        new List(this.regions.list, this.itemList).render();
+      },
     };
   }
 
@@ -54,7 +47,7 @@ export class ListContainer extends View {
           <input class='form-input' type='text' name='listItem' />
           <button>ADD</button>
         </form>
-        <div class='list-wrapper'></div>
+        <div class='list'></div>
       </div>
     `;
   }
