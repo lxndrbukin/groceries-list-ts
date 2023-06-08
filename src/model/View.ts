@@ -1,14 +1,14 @@
 export abstract class View {
-  regions: { [key: string]: Element } = {};
-  constructor(public parent: Element) {}
+  regions: { [key: string]: Element; } = {};
+  constructor(public parent: Element) { }
 
   abstract template(): string;
 
-  regionsMap(): { [key: string]: string } {
+  regionsMap(): { [key: string]: string; } {
     return {};
   }
 
-  eventsMap(): { [key: string]: () => void } {
+  eventsMap(): { [key: string]: () => void; } {
     return {};
   }
 
@@ -33,9 +33,12 @@ export abstract class View {
     }
   }
 
-  onRender(): void {}
+  onRender(): void { }
+
+  renderCollection(): void { };
 
   render(): void {
+    this.parent.innerHTML = '';
     const templateEl = document.createElement('template');
     templateEl.innerHTML = this.template();
     this.bindEvents(templateEl.content);
