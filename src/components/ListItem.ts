@@ -10,8 +10,7 @@ export class ListItem extends View<User, Props> {
   eventsMap(): { [key: string]: () => void; } {
     return {
       'click:.del': () => {
-        // this.item = { ...this.item, data: '' };
-        // this.render();
+        this.model.delete(this.item);
         console.log(this.model.get());
       }
     };

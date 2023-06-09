@@ -1,4 +1,4 @@
 export interface Props {
-  id: number,
+  id: string,
   data?: string;
 }

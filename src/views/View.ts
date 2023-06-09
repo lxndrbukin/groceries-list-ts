@@ -2,7 +2,9 @@ import { Model } from '../models/Model';
 
 export abstract class View<T extends Model<K>, K> {
   regions: { [key: string]: Element; } = {};
-  constructor(public parent: Element, public model: T) { }
+  constructor(public parent: Element, public model: T) {
+    this.bindModel();
+  }
 
   abstract template(): string;
 
@@ -12,6 +14,12 @@ export abstract class View<T extends Model<K>, K> {
 
   eventsMap(): { [key: string]: () => void; } {
     return {};
+  }
+
+  bindModel(): void {
+    this.model.on('change', () => {
+      this.render();
+    });
   }
 
   mapRegions(fragment: DocumentFragment): void {

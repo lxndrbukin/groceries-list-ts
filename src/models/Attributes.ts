@@ -1,5 +1,5 @@
 interface HasId {
-  id: number;
+  id: string;
 }
 
 export class Atrributes<T extends HasId> {
@@ -20,5 +20,12 @@ export class Atrributes<T extends HasId> {
 
   save(item: T): void {
     this.data.push(item);
+  }
+
+  delete(item: T): void {
+    const updatedList = this.data.filter((dataItem: T) => {
+      return dataItem.id !== item.id;
+    });
+    this.data = updatedList;
   }
 }
