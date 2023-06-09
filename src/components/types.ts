@@ -1,4 +1,4 @@
-export interface ItemProps {
+export interface Props {
   id: number,
   data?: string;
 }

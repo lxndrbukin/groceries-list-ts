@@ -1,16 +1,18 @@
 import { View } from '../views/View';
-import { ItemProps } from './types';
+import { User } from '../models/User';
+import { Props } from './types';
 
-export class ListItem extends View {
-  constructor(public parent: Element, public item: ItemProps) {
-    super(parent);
+export class ListItem extends View<User, Props> {
+  constructor(public parent: Element, public model: User, public item: Props) {
+    super(parent, model);
   }
 
   eventsMap(): { [key: string]: () => void; } {
     return {
       'click:.del': () => {
-        this.item = { ...this.item, data: '' };
-        this.render();
+        // this.item = { ...this.item, data: '' };
+        // this.render();
+        console.log(this.model.get());
       }
     };
   }
@@ -26,6 +28,6 @@ export class ListItem extends View {
           <button class='btn del'>DEL</button>
         </div>
       </div>
-  `;
+    `;
   }
 }

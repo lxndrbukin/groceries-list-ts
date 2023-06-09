@@ -1,8 +1,11 @@
 import { View } from '../views/View';
+import { User } from '../models/User';
+import { Props } from './types';
 import { Header } from './Header';
-import { ListContainer } from './Container';
+import { ListContainer } from './ListContainer';
 
-export class App extends View {
+export class App extends View<User, Props> {
+
   regionsMap(): { [key: string]: string; } {
     return {
       header: '.header-wrapper',
@@ -11,8 +14,8 @@ export class App extends View {
   }
 
   onRender(): void {
-    new Header(this.regions.header).render();
-    new ListContainer(this.regions.container).render();
+    new Header(this.regions.header, this.model).render();
+    new ListContainer(this.regions.container, this.model).render();
   }
 
   template(): string {

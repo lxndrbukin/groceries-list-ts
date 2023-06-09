@@ -1,11 +1,12 @@
 import { View } from '../views/View';
-import { ItemProps } from './types';
+import { User } from '../models/User';
+import { Props } from './types';
 import { List } from './List';
 
 
-export class ListContainer extends View {
-  itemList: ItemProps[] = [];
-  listItem: ItemProps;
+export class ListContainer extends View<User, Props> {
+  itemList: Props[] = [];
+  listItem: Props;
 
   regionsMap(): { [key: string]: string; } {
     return {
@@ -21,17 +22,15 @@ export class ListContainer extends View {
         if (!e.target) {
           return;
         }
-        this.listItem = {
-          ...this.listItem,
-          id: this.itemList.length,
+        const list = this.model.get();
+        const item = {
+          id: list.length,
           data: (<HTMLFormElement>e.target).listItem.value
         };
-        if (this.listItem.data === '' || !this.listItem.data) {
-          return;
-        }
-        this.itemList.push(this.listItem);
+        this.model.save(item);
+        console.log(list);
         (<HTMLFormElement>e.target).listItem.value = '';
-        new List(this.regions.list, this.itemList).render();
+        new List(this.regions.list, this.model).render();
       },
     };
   }
