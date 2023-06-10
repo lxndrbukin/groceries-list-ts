@@ -23,7 +23,8 @@ export class ListContainer extends View<User, Props> {
         const list = this.model.get();
         const item = {
           id: nanoid(),
-          data: (<HTMLFormElement>e.target).listItem.value
+          data: (<HTMLFormElement>e.target).listItem.value,
+          editing: false
         };
         this.model.save(item);
         console.log(list);

@@ -9,18 +9,36 @@ export class ListItem extends View<User, Props> {
 
   eventsMap(): { [key: string]: () => void; } {
     return {
-      'click:.del': () => {
-        this.model.delete(this.item);
-        console.log(this.model.get());
-      }
+      'click:.del': this.onClickDelete,
+      'click:.edit': this.showEditOnClick
     };
+  }
+
+  onClickDelete = (): void => {
+    this.model.delete(this.item);
+  };
+
+  showEditOnClick = (): void => {
+    this.item.editing = !this.item.editing;
+    this.model.trigger('change');
+  };
+
+  renderEdit(): string {
+    if (!this.item.editing) {
+      return /*html*/ `
+        <span>${this.item.data}</span>
+      `;
+    }
+    return /*html*/ `
+      <input value='${this.item.data}' />
+    `;
   }
 
   template(): string {
     return /*html*/ `
       <div class='list-item'>
         <div class='list-item-data'>
-          ${this.item.data}
+          ${this.renderEdit()}
         </div>
         <div class='list-item-btns'>
           <button class='btn edit'>EDIT</button>

@@ -38,4 +38,8 @@ export class Model<T> {
     this.attrs.delete(item);
     this.events.trigger('change');
   }
+
+  edit(item: T): void {
+    this.events.trigger('change');
+  }
 }

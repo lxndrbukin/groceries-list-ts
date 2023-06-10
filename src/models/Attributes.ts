@@ -28,4 +28,8 @@ export class Atrributes<T extends HasId> {
     });
     this.data = updatedList;
   }
+
+  edit(item: T): void {
+
+  }
 }
