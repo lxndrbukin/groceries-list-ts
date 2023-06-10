@@ -7,7 +7,7 @@ export interface ModelAttributes<T> {
 
 export interface ModelEvents {
   on(eventName: string, callback: () => void): void;
-  trigger(eventName): void;
+  trigger(eventName: string): void;
 }
 
 export class Model<T> {
@@ -23,6 +23,7 @@ export class Model<T> {
 
   set(update: T): void {
     this.attrs.set(update);
+    this.events.trigger('change');
   }
 
   get(): T[] {
@@ -36,10 +37,6 @@ export class Model<T> {
 
   delete(item: T): void {
     this.attrs.delete(item);
-    this.events.trigger('change');
-  }
-
-  edit(item: T): void {
     this.events.trigger('change');
   }
 }

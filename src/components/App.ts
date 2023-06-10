@@ -8,7 +8,7 @@ export class App extends View<User, Props> {
 
   regionsMap(): { [key: string]: string; } {
     return {
-      header: '.header-wrapper',
+      header: '.header',
       container: '.container-wrapper',
     };
   }
@@ -21,7 +21,7 @@ export class App extends View<User, Props> {
   template(): string {
     return /*html*/ `
       <div class='app'>
-        <header class='header-wrapper'></header>
+        <header class='header'></header>
         <div class='container-wrapper'></div>
       </div>
     `;

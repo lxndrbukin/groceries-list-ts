@@ -5,17 +5,16 @@ interface HasId {
 export class Atrributes<T extends HasId> {
   constructor(private data: T[]) { }
 
+  get(): T[] {
+    return this.data;
+  }
+
   set(update: T): void {
     const index = this.data.findIndex((item: T) => item.id === update.id);
     this.data[index] = {
       ...this.data[index],
-      update
+      ...update
     };
-    console.log(this.data);
-  }
-
-  get(): T[] {
-    return this.data;
   }
 
   save(item: T): void {
@@ -27,9 +26,5 @@ export class Atrributes<T extends HasId> {
       return dataItem.id !== item.id;
     });
     this.data = updatedList;
-  }
-
-  edit(item: T): void {
-
   }
 }

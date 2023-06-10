@@ -14,6 +14,7 @@ export abstract class ViewCollection<T extends Model<K>, K> {
       const itemParent = document.createElement('div');
       this.renderItem(itemParent, item as Props);
       templateEl.content.appendChild(itemParent);
+
     }
     this.parent.appendChild(templateEl.content);
   }
