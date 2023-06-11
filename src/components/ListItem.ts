@@ -44,8 +44,12 @@ export class ListItem extends View<User, Props> {
             <span>${this.item.data}</span>
           </div>
           <div class='list-item-btns'>
-            <button class='btn edit'>EDIT</button>
-            <button class='btn del'>DEL</button>
+            <button class='btn edit'>
+              <i class='fa-solid fa-pen-to-square'></i>
+            </button>
+            <button class='btn del'>
+              <i class='fa-solid fa-trash'></i>
+            </button>
           </div>
         </div>
       `;
@@ -56,7 +60,9 @@ export class ListItem extends View<User, Props> {
           <input value='${this.item.data}' />
         </div>
         <div class='list-item-btns'>
-          <button class='btn save'>SAVE</button>
+          <button class='btn save'>
+            <i class='fa-solid fa-file'></i>
+          </button>
         </div>
       </div>
     `;

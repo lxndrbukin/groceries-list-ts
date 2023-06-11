@@ -5,7 +5,7 @@ import { Props } from './types';
 export class Header extends View<User, Props> {
   template(): string {
     return /*html*/ `
-      <h3>Goodies List</h3>
+      <span>Groceries List</span>
     `;
   }
 }

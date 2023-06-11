@@ -15,6 +15,9 @@ export class ListForm extends View<User, Props> {
     if (!e.target) {
       return;
     }
+    if ((<HTMLFormElement>e.target).listItem.value === '') {
+      return;
+    }
     const item = {
       id: nanoid(),
       data: (<HTMLFormElement>e.target).listItem.value,
@@ -28,7 +31,9 @@ export class ListForm extends View<User, Props> {
     return /*html*/ `
       <form class='list-form'>
         <input class='form-input' type='text' name='listItem' />
-        <button>ADD</button>
+        <button class='btn add'>
+          <i class='fa-solid fa-plus'></i>
+        </button>
       </form>
     `;
   }
